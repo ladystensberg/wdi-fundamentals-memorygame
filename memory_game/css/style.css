@@ -70,7 +70,6 @@ footer {
   font-size: 14px;
   letter-spacing: .08em;
   font-weight: 500;
-  height: 60px;
 }
 
 .copyright, .message {
@@ -85,14 +84,14 @@ footer {
   float: right;
 }
 
-/* .clearfix {
+.clearfix {
   visibility: hidden;
   display: block;
   content: " ";
   clear: both;
   height: 100px;
   font-size: 0;
-} */
+}
 
 .name {
   color: #F15B31;
