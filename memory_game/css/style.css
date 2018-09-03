@@ -84,12 +84,12 @@ footer {
   float: right;
 }
 
-.clearfix {
+.clearfix:after {
   visibility: hidden;
   display: block;
   content: " ";
   clear: both;
-  height: 100px;
+  height: 0;
   font-size: 0;
 }
 
