@@ -66,8 +66,6 @@ shuffle(cards);
 
 
 
-// remove cards when match is found
-// turn over cards again when no match is found
 // add score board and timeer(?)
 // hide instructions when game link is selected
 // hide gameboard when instructions is selected
@@ -87,18 +85,20 @@ var cardsInPlay = [];
 
 function checkForMatch() {
   var match = false;
-  if (cardsInPlay[0] === cardsInPlay[1]) {
+  if (cardsInPlay[0].name === cardsInPlay[1].name) {
     alert("You found a match!");
     match = true;
     cardsInPlay = [];
   } else {
     alert("Sorry, try again.");
+    match = false;
   }
   if (match === false) {
     for (var i = 0; i < cardsInPlay.length; i++) {
       var cardElement = document.getElementById(cardsInPlay[i].id);
       cardElement.setAttribute("src", "images/back-2.png");
     }
+    cardsInPlay = [];
   }
 }
 
