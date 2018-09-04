@@ -1,3 +1,4 @@
+// array of cards
 var cards = [
   {
     name: "1 star",
@@ -25,11 +26,28 @@ var cards = [
   }
 ];
 
-// shuffle function was borrowed from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+// returns array as original array * 2
+function copyArray(array) {
+  var newArray = [];
+  var currentArray = array;
+  for (var i = 0; i < currentArray.length; i++) {
+    newArray.push(currentArray[i]);
+  }
+  for (var j = 0; j < newArray.length; j++) {
+    currentArray.push(newArray[j]);
+  }
+  return currentArray;
+}
 
-  while (0 !== currentIndex) {
+/* shuffle function was borrowed from
+https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+with minor adjustments */
+function shuffle(array) {
+  var currentIndex = array.length;
+  var temporaryValue;
+  var randomIndex;
+
+  while (currentIndex > 0) {
 
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
@@ -42,7 +60,10 @@ function shuffle(array) {
   return array;
 }
 
+//calls copyArray and shuffle functions
+cards = copyArray(cards);
 shuffle(cards);
+
 
 function createBoard() {
   for (var i = 0; i < cards.length; i++) {
