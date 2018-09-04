@@ -1,30 +1,53 @@
 var cards = [
   {
-    rank: "queen",
-    suit: "hearts",
-    cardImage: "images/queen-of-hearts.png"
+    name: "1 star",
+    cardImage: "images/1star.png"
   },
   {
-    rank: "queen",
-    suit: "diamonds",
-    cardImage: "images/queen-of-diamonds.png"
+    name: "2 star",
+    cardImage: "images/2star.png"
   },
   {
-    rank: "king",
-    suit: "hearts",
-    cardImage: "images/king-of-hearts.png"
+    name: "3 star",
+    cardImage: "images/3star.png"
   },
   {
-    rank: "king",
-    suit: "diamonds",
-    cardImage: "images/king-of-diamonds.png"
+    name: "4 star",
+    cardImage: "images/4star.png"
+  },
+  {
+    name: "5 star",
+    cardImage: "images/5star.png"
+  },
+  {
+    name: "6 star",
+    cardImage: "images/6star.png"
   }
 ];
+
+// shuffle function was borrowed from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  while (0 !== currentIndex) {
+
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+shuffle(cards);
 
 function createBoard() {
   for (var i = 0; i < cards.length; i++) {
     var cardElement = document.createElement('img');
-    cardElement.setAttribute("src", "images/back.png");
+    cardElement.setAttribute("src", "images/back-2.png");
     cardElement.setAttribute("data-id", i);
     cardElement.addEventListener("click", flipCard);
     document.getElementById('game-board').appendChild(cardElement);
@@ -36,11 +59,7 @@ var cardsInPlay = [];
 
 function flipCard () {
   var cardId = this.getAttribute('data-id');
-
-  console.log("User flipped " + cards[cardId].rank);
-  console.log(cards[cardId].cardImage);
-  console.log(cards[cardId].suit);
-  cardsInPlay.push(cards[cardId].rank);
+  cardsInPlay.push(cards[cardId].name);
   this.setAttribute('src', cards[cardId].cardImage);
   if (cardsInPlay.length === 2) {
     if (cardsInPlay[0] === cardsInPlay[1]) {
