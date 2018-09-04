@@ -65,6 +65,14 @@ cards = copyArray(cards);
 shuffle(cards);
 
 
+
+// remove cards when match is found
+// turn over cards again when no match is found
+// add score board and timeer(?)
+// hide instructions when game link is selected
+// hide gameboard when instructions is selected
+
+
 function createBoard() {
   for (var i = 0; i < cards.length; i++) {
     var cardElement = document.createElement('img');
@@ -72,22 +80,33 @@ function createBoard() {
     cardElement.setAttribute("data-id", i);
     cardElement.addEventListener("click", flipCard);
     document.getElementById('game-board').appendChild(cardElement);
-    console.log(cardElement);
   }
 }
 
 var cardsInPlay = [];
+
+function checkForMatch() {
+  var match = false;
+  if (cardsInPlay[0] === cardsInPlay[1]) {
+    alert("You found a match!");
+    match = true;
+    cardsInPlay = [];
+  } else {
+    alert("Sorry, try again.");
+  }
+  if (match === false) {
+    for (var i = 0; i < cardsInPlay.length; i++) {
+      console.log(cardsInPlay);
+    }
+  }
+}
 
 function flipCard () {
   var cardId = this.getAttribute('data-id');
   cardsInPlay.push(cards[cardId].name);
   this.setAttribute('src', cards[cardId].cardImage);
   if (cardsInPlay.length === 2) {
-    if (cardsInPlay[0] === cardsInPlay[1]) {
-      alert("You found a match!");
-    } else {
-      alert("Sorry, try again.");
-    }
+    checkForMatch();
   }
 }
 
