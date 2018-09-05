@@ -70,6 +70,9 @@ shuffle(cards);
 // hide instructions when game link is selected
 // hide gameboard when instructions is selected
 
+var cardsInPlay = [];
+var matchScore = 0;
+var numberOfMoves = 15;
 
 function createBoard() {
   for (var i = 0; i < cards.length; i++) {
@@ -79,15 +82,19 @@ function createBoard() {
     cardElement.addEventListener("click", flipCard);
     document.getElementById('game-board').appendChild(cardElement);
   }
+  document.getElementById("score").innerHTML = matchScore;
+  document.getElementById("moves").innerHTML = numberOfMoves;
 }
 
-var cardsInPlay = [];
-var matchScore = 0;
+function resetGame () {
+  window.location.reload(true);
+}
 
 function checkForMatch() {
   var match = false;
   if (cardsInPlay[0].name === cardsInPlay[1].name) {
     matchScore = matchScore + 1;
+    document.getElementById("score").innerHTML = matchScore;
     match = true;
     cardsInPlay = [];
   } else {
@@ -101,17 +108,21 @@ function checkForMatch() {
 }
 
 function flipCard () {
+  if (numberOfMoves === 0) {
+    alert("Sorry, game over!");
+    resetGame();
+  }
   var cardId = this.getAttribute('id');
   cardsInPlay.push({id: cardId, name: cards[cardId].name});
   this.setAttribute('src', cards[cardId].cardImage);
   if (cardsInPlay.length === 2) {
     window.setTimeout(checkForMatch, 1000);
+    numberOfMoves = numberOfMoves - 1;
+    document.getElementById("moves").innerHTML = numberOfMoves;
   }
 }
 
-function resetGame () {
-  window.location.reload(true);
-}
+
 
 
 createBoard();

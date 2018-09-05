@@ -105,3 +105,31 @@ footer {
   color: #F15B31;
   font-weight: 700;
 }
+
+.score_moves {
+  display: inline-block;
+  margin: 30px 0 30px 0;
+  font-size: 25px;
+  font-family: "Droid Serif", serif;
+}
+
+#score {
+  margin-right: 50px;
+  color: #F15B31;
+}
+
+#moves {
+  color: #F15B31;
+}
+
+#reset {
+  display: block;
+  margin: 0 auto;
+  padding: 15px;
+  border: none;
+  font-size: 15pt;
+  font-family: "Droid Serif", serif;
+  font-weight: bold;
+  background-color: #00A6B3;
+  color: #FFF;
+}
