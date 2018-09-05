@@ -82,18 +82,16 @@ function createBoard() {
 }
 
 var cardsInPlay = [];
+var matchScore = 0;
 
 function checkForMatch() {
   var match = false;
   if (cardsInPlay[0].name === cardsInPlay[1].name) {
-    alert("You found a match!");
+    matchScore = matchScore + 1;
     match = true;
     cardsInPlay = [];
   } else {
-    alert("Sorry, try again.");
     match = false;
-  }
-  if (match === false) {
     for (var i = 0; i < cardsInPlay.length; i++) {
       var cardElement = document.getElementById(cardsInPlay[i].id);
       cardElement.setAttribute("src", "images/back-2.png");
@@ -107,7 +105,7 @@ function flipCard () {
   cardsInPlay.push({id: cardId, name: cards[cardId].name});
   this.setAttribute('src', cards[cardId].cardImage);
   if (cardsInPlay.length === 2) {
-    checkForMatch();
+    window.setTimeout(checkForMatch, 1000);
   }
 }
 
